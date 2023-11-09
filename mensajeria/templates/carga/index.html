@@ -1,0 +1,78 @@
+{% extends '../layout/base.html' %} {% load static %} {% block content %}
+<!-- CSS de DataTables -->
+<link rel="stylesheet" href="{% static 'css/datatables.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'css/administracion/funcionarios.css' %}"
+/>
+<div class="row py-3">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <div class="dashboard-title-text">
+      <input
+        type="hidden"
+        id="mensajeCreate"
+        class="mensajeCreate"
+        value="{{mensaje}}"
+      />
+    </div>
+  </div>
+</div>
+<style>
+  .nav-link:not(.active) {
+    color: black !important;
+  }
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+    </div>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center vh-50">
+      <div class="col-md-4">
+        <div class="card shadow">
+          {{error}}
+          <div class="card-header">
+            <h4 class="text-center">Cargar Excel</h4>
+          </div>
+          <div class="card-body">
+            <form id="miFormulario" method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="archivo_excel" class="form-label"
+              >Archivo </label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="archivo_excel"
+              name="archivo_excel"
+              accept=".xlsx, .xls"
+              required
+            />
+              </div>
+              <div class="text-center">
+                <button id="guardarBtn" class="btn btn-primary">
+                  Subir
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    </tbody>
+  </table>
+</div>
+<br />
+<br />
+<script src="{% static 'js/datatables.js' %}"></script>
+<script src="{% static 'js/sweet.js' %}"></script>
+<script src="{% static 'js/carga/index.js' %}?v=24"></script>
+
+{% endblock %}
